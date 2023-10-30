@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Анкета слушателя курсов повышения квалификации</title>
+  </head>
+  <body>
+    <h1>Анкета слушателя курсов повышения квалификации</h1>
+    <form id="studentForm">
+      <p>Курс:</p>
+      <label for="firstCourse">Первый</label>
+      <input
+        type="radio"
+        id="firstCourse"
+        name="Курс"
+        value="Первый"
+      /><br /><br />
+
+      <label for="secondCourse">Второй</label>
+      <input
+        type="radio"
+        id="secondCourse"
+        name="Курс"
+        value="Второй"
+      /><br /><br />
+
+      <label for="thirdCourse">Третий</label>
+      <input
+        type="radio"
+        id="thirdCourse"
+        name="Курс"
+        value="Третий"
+      /><br /><br />
+
+      <label for="thirdCourse">Четверный</label>
+      <input
+        type="radio"
+        id="fourthCourse"
+        name="Курс"
+        value="Четвертый"
+      /><br /><br />
+
+      <label for="language">Язык обучения:</label>
+      <select id="language" name="Язык обучения">
+        <option value="Русский">Русский</option>
+        <option value="Белорусский">Белорусский</option>
+        <option value="Английский">Английский</option>
+      </select>
+
+      <label for="fiop">, ФИО Преподавателя:</label>
+      <select id="fiop" name="ФИО Преподавателя">
+        <option value="Иванов И. И.">Иванов И. И.</option>
+        <option value="Петров П. П.">Петров П. П.</option>
+        <option value="Антонов А. А.">Антонов А. А.</option>
+      </select>
+      <br /><br />
+
+      <label for="disciplines">Изучаемые дисциплины:</label>
+      <textarea id="disciplines" name="Дисциплины"></textarea><br /><br />
+
+      <input value="Отправить" onclick="submitForm()" />
+    </form>
+
+    <div id="studentData"></div>
+
+    <script>
+      function submitForm() {
+        const form = document.getElementById("studentForm");
+        const formData = new FormData(form);
+        const studentData = document.getElementById("studentData");
+        for (const [key, value] of formData.entries()) {
+          console.log(key + ": " + value);
+          if (key === "Курс") {
+            studentData.innerHTML += `<p>${key} : ${
+              document.querySelector('input[name="Курс"]:checked').value
+            }</p>`;
+            continue;
+          }
+          studentData.innerHTML += `<p>${key} : ${value}</p>`;
+        }
+
+        form.style.display = "none";
+      }
+    </script>
+  </body>
+</html>

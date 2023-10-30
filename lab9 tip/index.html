@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Строка и изображение</title>
+    <style>
+      .hover-effect:hover {
+        font-size: 16pt;
+        color: green;
+        background-color: blue;
+        cursor: pointer;
+      }
+
+      .image-with-caption {
+        display: inline-block;
+        position: relative;
+        cursor: pointer;
+      }
+
+      .image-caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        color: black;
+        text-align: center;
+        padding: 4px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .image-with-caption:hover .image-caption {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <p class="hover-effect" onmouseover="decreaseFontSize()">
+      Наведите курсор для изменения стиля строки.
+    </p>
+
+    <div class="image-with-caption" onclick="changeTextColorAndCaptionColor()">
+      <img
+        id="image"
+        onmouseout="changePng()"
+        onmouseover="changePng()"
+        src="./1.jpg"
+        height="200px"
+        alt="Изображение"
+      />
+
+      <p class="image-caption" style="background-color: aqua; color: white">
+        Подпись на изображении
+      </p>
+    </div>
+
+    <script>
+      let toIncreaseFontSize = false;
+      function decreaseFontSize() {
+        const hoverEffectText = document.querySelector(".hover-effect");
+        const currentFontSize = parseFloat(
+          window.getComputedStyle(hoverEffectText).getPropertyValue("font-size")
+        );
+
+        if (!isNaN(currentFontSize)) {
+          hoverEffectText.style.fontSize = toIncreaseFontSize
+            ? 16 + "pt"
+            : currentFontSize + 40 + "pt";
+          toIncreaseFontSize = !toIncreaseFontSize;
+        }
+      }
+
+      function increaseFontSize() {
+        const hoverEffectText = document.querySelector(".hover-effect");
+        const currentFontSize = parseFloat(
+          window.getComputedStyle(hoverEffectText).getPropertyValue("font-size")
+        );
+
+        if (!isNaN(currentFontSize)) {
+          hoverEffectText.style.fontSize = currentFontSize + 16 + "pt";
+        }
+      }
+
+      function changePng() {
+        const image = document.getElementById("image");
+
+        const path = image.getAttribute("src");
+
+        image.setAttribute("src", path === "./1.jpg" ? "./2.jpg" : "./1.jpg");
+      }
+
+      function changeTextColorAndCaptionColor() {
+        const imageCaption = document.querySelector(".image-caption");
+
+        const currentCaptionColor = window
+          .getComputedStyle(imageCaption)
+          .getPropertyValue("color");
+
+        imageCaption.style = "background-color: green; color: black";
+      }
+    </script>
+  </body>
+</html>

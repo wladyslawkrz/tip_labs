@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      #horizontalLine {
+        width: 100%;
+        height: 3px;
+        background-color: black;
+        position: absolute;
+        top: 50%;
+        transition: all 0.3s;
+      }
+    </style>
+    <title>Изменение линии</title>
+  </head>
+  <body>
+    <div id="horizontalLine"></div>
+    <script>
+      const line = document.getElementById("horizontalLine");
+
+      let widthPercentage = 90;
+      let thicknessPixels = 2;
+
+      function updateLine() {
+        line.style.width = widthPercentage + "%";
+        line.style.height = thicknessPixels + "px";
+        line.style.top = "calc(50% - " + thicknessPixels / 2 + "px)";
+      }
+
+      line.addEventListener("click", () => {
+        widthPercentage -= 10;
+        thicknessPixels += 1;
+        updateLine();
+      });
+    </script>
+  </body>
+</html>

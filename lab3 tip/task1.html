@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Округление числа</title>
+  </head>
+  <body>
+    <button onclick="roundNumber()">
+      Округлить число 984.57312312 до 4 знаков
+    </button>
+    <p id="result"></p>
+
+    <script>
+      function roundNumber() {
+        const number = 984.57312312;
+        const n = 4;
+        const roundedNumber = Math.ceil(number * 10000) / 10000;
+        document.getElementById("result").innerHTML =
+          "Округленное число: " + roundedNumber;
+      }
+    </script>
+  </body>
+</html>

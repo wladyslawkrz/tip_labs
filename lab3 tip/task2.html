@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Операции с массивом</title>
+  </head>
+  <body>
+    <button onclick="performOperations()">Выполнить операции с массивом</button>
+    <p id="result"></p>
+
+    <script>
+      function performOperations() {
+        const numbers = [
+          278.785, 547.473, 182.487, 264.289, 452.297, 984.573, 893.284,
+        ];
+
+        const minValue = Math.min(...numbers);
+
+        document.getElementById(
+          "result"
+        ).innerHTML = `Минимальное значение массива ${numbers.join(
+          ", "
+        )} = ${minValue} `;
+      }
+    </script>
+  </body>
+</html>
