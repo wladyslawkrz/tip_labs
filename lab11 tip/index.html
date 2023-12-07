@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jQuery Events</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+      #myForm {
+        display: flex;
+        flex-direction: column;
+        width: 200px;
+      }
+      #myForm * {
+        margin: 5px;
+        margin-bottom: 0px;
+      }
+    </style>
+  <body>
+    <h1>Мой сайт</h1>
+    <form id="myForm">
+      <label for="inputField">Введите имя:</label> 
+      <input type="text" id="inputField" name="inputField" /> 
+      <button type="submit">Отправить</button> 
+      <button type="reset">Сбросить</button> 
+    </form>
+
+    <script>
+      $(document).ready(function () {
+        $("#inputField").on("change paste keyup", function () {
+          console.log("Поле ввода изменено:", $(this).val());
+        });
+
+        $("#myForm").on("reset", function () {
+          console.log("Ввод сброшен");
+        });
+
+        $("#myForm").on("submit", function (event) {
+          event.preventDefault();
+          console.log("Форма отправлена");
+        });
+      });
+    </script>
+  </body>
+</html>
